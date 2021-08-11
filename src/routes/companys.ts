@@ -4,7 +4,7 @@ import Joi, { exist } from 'joi';
 const router = express.Router();
 import fs  from 'fs';
 
-import companys from '/Users/decagon/Desktop/NodeAsign/week-6-node-008-chinexman/src/routes/database.json';
+import companys from './database.json';
 
 
 app.use(express.json());
@@ -92,7 +92,7 @@ updateCompany.noOfEmployees = req.body.noOfEmployees || updateCompany.noOfEmploy
 updateCompany.employees =req.body.employees || updateCompany.employees
 
 companys.push(updateCompany);
-//fs.writeFileSync("/Users/decagon/Desktop/NodeAsign/week-6-node-008-chinexman/src/routes/database.json", JSON.stringify(companys, null, " ") );
+fs.writeFileSync("/Users/decagon/Desktop/NodeAsign/week-6-node-008-chinexman/src/routes/database.json", JSON.stringify(companys, null, " ") );
 
 res.status(201).json(updateCompany);
 
