@@ -60,7 +60,7 @@ noOfEmployees:req.body.noOfEmployees,
 employees:req.body.employees
 }
 companys.push(company);
-fs.writeFileSync("/Users/decagon/Desktop/NodeAsign/week-6-node-008-chinexman/src/routes/database.json", JSON.stringify(companys, null, " ") );
+fs.writeFileSync("./database.json", JSON.stringify(companys, null, " ") );
 
 res.status(201).send(company);
 
@@ -92,7 +92,7 @@ updateCompany.noOfEmployees = req.body.noOfEmployees || updateCompany.noOfEmploy
 updateCompany.employees =req.body.employees || updateCompany.employees
 
 companys.push(updateCompany);
-fs.writeFileSync("/Users/decagon/Desktop/NodeAsign/week-6-node-008-chinexman/src/routes/database.json", JSON.stringify(companys, null, " ") );
+fs.writeFileSync("./database.json", JSON.stringify(companys, null, " ") );
 
 res.status(201).json(updateCompany);
 
