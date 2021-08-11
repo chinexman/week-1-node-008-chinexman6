@@ -14,11 +14,16 @@
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
     "morgan": "~1.9.1",
-    "nodemon": "^2.0.12"
+    "nodemon": "^2.0.12",
+    "src": "^1.1.2"
   },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.2",
     "@types/http-errors": "^1.8.1",
+    "@typescript-eslint/eslint-plugin": "^4.29.1",
+    "@typescript-eslint/parser": "^4.29.1",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
     "jest": "^27.0.6",
     "joi": "^17.4.2",
     "supertest": "^6.1.4",
