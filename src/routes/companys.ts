@@ -3,8 +3,9 @@ const app = express();
 import Joi, { exist } from 'joi';
 const router = express.Router();
 import fs  from 'fs';
+import path from 'path'
 
-import companys from './database.json';
+//import companys from './database.json';
 
 
 app.use(express.json());
@@ -22,6 +23,16 @@ app.use(express.json());
 //   }
 // })
 
+const companyDb = path.join(__dirname,"./database.json")
+const getCompanys = ()=> {
+ if( !fs.existsSync(companyDb) ){
+ fs.writeFileSync(companyDb, JSON.stringify([]) )
+ }
+ return JSON.parse( fs.readFileSync(companyDb, "utf-8"))
+}
+
+const companys = getCompanys();
+
 router.get('/', function (req, res,next) {
   companys.sort((a:{id:number},b:{id:number})=>a.id - b.id);
   //console.log(companys);
@@ -32,7 +43,7 @@ router.get('/', function (req, res,next) {
 router.get('/:id', function (req, res) {
   const company = companys.find((c:{id:number})=>c.id ===parseInt(req.params.id))
   if(!company) return res.status(404).send('The company with the given id was not found');
-res.send(company);
+res.status(200).send(company);
 })
 
 router.post('/', function(req, res){
@@ -60,7 +71,7 @@ noOfEmployees:req.body.noOfEmployees,
 employees:req.body.employees
 }
 companys.push(company);
-fs.writeFileSync("./database.json", JSON.stringify(companys, null, " ") );
+fs.writeFileSync(companyDb, JSON.stringify(companys, null, " ") );
 
 res.status(201).send(company);
 
@@ -92,7 +103,7 @@ updateCompany.noOfEmployees = req.body.noOfEmployees || updateCompany.noOfEmploy
 updateCompany.employees =req.body.employees || updateCompany.employees
 
 companys.push(updateCompany);
-fs.writeFileSync("./database.json", JSON.stringify(companys, null, " ") );
+fs.writeFileSync(companyDb, JSON.stringify(companys, null, " ") );
 
 res.status(201).json(updateCompany);
 
@@ -105,6 +116,7 @@ router.delete('/:id', function (req, res) {
 
   const index = companys.indexOf(deleteCompany);
   companys.splice(index,1)
+  fs.writeFileSync(companyDb, JSON.stringify(companys, null, " ") );
 res.send(deleteCompany);
 })
 
