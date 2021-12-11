@@ -89,7 +89,9 @@ router.put('/:id', function(req, res){
   const  updateCompany = companys.find((c:{id:number})=>c.id ===parseInt(req.params.id))
   if(!updateCompany) return res.status(404).send('The company with the given id was not found');
 // res.send(company);
-console.log(req.body);
+//console.log(req.body);
+const index = companys.indexOf(updateCompany);
+  companys.splice(index,1)
 
 updateCompany.organization= req.body.organization || updateCompany.organization,
 updateCompany.updatedAt=new Date().toISOString(),
@@ -102,7 +104,9 @@ updateCompany.country = req.body.country || updateCompany.country,
 updateCompany.noOfEmployees = req.body.noOfEmployees || updateCompany.noOfEmployees,
 updateCompany.employees =req.body.employees || updateCompany.employees
 
+console.log(companys);
 companys.push(updateCompany);
+console.log(companys);
 fs.writeFileSync(companyDb, JSON.stringify(companys, null, " ") );
 
 res.status(201).json(updateCompany);
@@ -117,7 +121,10 @@ router.delete('/:id', function (req, res) {
   const index = companys.indexOf(deleteCompany);
   companys.splice(index,1)
   fs.writeFileSync(companyDb, JSON.stringify(companys, null, " ") );
-res.send(deleteCompany);
+res.send({
+  status: "This data has been deleted successfully",
+  deleteCompany
+});
 })
 
 // function validateCompany(company:any){

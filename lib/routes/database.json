@@ -1,0 +1,40 @@
+[
+ {
+  "id": 2,
+  "organization": "cellula",
+  "createdAt": "2021-08-15T00:24:49.350Z",
+  "updatedAt": "2021-08-15T00:32:41.160Z",
+  "products": [
+   "developers",
+   "pizza"
+  ],
+  "marketValue": "90%",
+  "address": "sangotedo",
+  "ceo": "cn",
+  "country": "Taiwan",
+  "noOfEmployees": 2,
+  "employees": [
+   "james bond",
+   "jackie chan"
+  ]
+ },
+ {
+  "id": 1,
+  "organization": "andddddd",
+  "createdAt": "2021-08-15T00:24:49.350Z",
+  "updatedAt": "2021-08-15T00:47:11.237Z",
+  "products": [
+   "developers",
+   "pizza"
+  ],
+  "marketValue": "90%",
+  "address": "sangotedo",
+  "ceo": "cn",
+  "country": "Taiwan",
+  "noOfEmployees": 2,
+  "employees": [
+   "james bond",
+   "jackie chan"
+  ]
+ }
+]
